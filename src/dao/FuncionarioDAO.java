@@ -59,6 +59,7 @@ public class FuncionarioDAO {
                 while(rs.next()){
                     
                     Pessoa pessoa = new Pessoa();
+                    pessoa.setId(rs.getInt("id"));
                     pessoa.setNome(rs.getString("nome"));
                     pessoa.setFuncaoFuncionario(rs.getString("funcao"));
                     listPessoa.add(pessoa);
@@ -71,4 +72,36 @@ public class FuncionarioDAO {
         
         return listPessoa;
         }
+        
+        	public void update(Pessoa pessoa) {
+             
+            java.util.Date date = java.sql.Date.valueOf(pessoa.getNascimento());
+	
+		Connection con = DB.getConnection();
+		PreparedStatement stmt = null;
+		try {
+
+			stmt = con.prepareStatement(
+					"UPDATE funcionario  SET NOME = ?, SEXO = ?,DATA_NASCIMENTO = ?,CPF = ?,SALARIO = ?,FUNCAO = ?,QUEBRA_CAIXA = ?,INSALUBRIDADE = ? WHERE id = ?");
+			stmt.setString(1, pessoa.getNome());
+			stmt.setString(2, String.valueOf(pessoa.getSexo()));
+			stmt.setDate(3,new java.sql.Date(date.getTime()));
+			stmt.setString(4, pessoa.getCpf());
+			stmt.setDouble(5, pessoa.getSalario());
+			stmt.setString(6, pessoa.getFuncaoFuncionario());
+			stmt.setDouble(7,  pessoa.getQuebraCaixa());
+			stmt.setDouble(8, pessoa.getInsalubridade());
+                        stmt.setInt(9, pessoa.getId());
+		
+			stmt.executeUpdate();
+
+			JOptionPane.showMessageDialog(null, "Atualizo com sucesso");
+			System.out.println("salvo com sucesso");
+
+		} catch (SQLException ex) {
+			JOptionPane.showMessageDialog(null, "Erro ao atualziar" + ex);
+			System.out.println("Erro ao salvar" + ex);
+		}
+	}
+        
 }

@@ -1,17 +1,20 @@
 package model;
 
-
 public class FuncionarioCaixa extends Pessoa {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private Double quebraCaixa;
+    private Double quebraCaixa;
 
-	public FuncionarioCaixa() {
-	}
+    public FuncionarioCaixa() {
+    }
 
-	public Double getQuebraCaixa() {
-		return quebraCaixa;
-	}
+    public Double getQuebraCaixa() {
+        return quebraCaixa;
+    }
+
+    public void setQuebraCaixa(Double quebraCaixa) {
+        this.quebraCaixa = quebraCaixa;
+    }
 
 }

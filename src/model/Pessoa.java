@@ -94,6 +94,6 @@ public class Pessoa implements Serializable {
 
     @Override
     public String toString() {
-        return "Funcionario nome: " + nome + ", funcaoFuncionario: " + funcaoFuncionario;
+        return "Codigo: "+id + "Funcionario nome: " + nome + ", Cargo: " + funcaoFuncionario;
     }
 }
