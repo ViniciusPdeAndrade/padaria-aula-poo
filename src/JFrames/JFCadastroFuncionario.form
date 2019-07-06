@@ -33,7 +33,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="jScrollPane2" min="-2" pref="836" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="64" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
@@ -43,7 +43,7 @@
                                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                       <Component id="ButtonSalvarCadastroFunc" min="-2" pref="176" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                                      <Component id="botaoAtualizar" min="-2" pref="237" max="-2" attributes="0"/>
+                                      <Component id="botaoAtualizar" min="-2" pref="193" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -63,15 +63,12 @@
                                       </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace pref="25" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
-                                      <Component id="insalubridadetext" min="-2" pref="262" max="-2" attributes="0"/>
-                                  </Group>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="insalubridadetext" alignment="1" min="-2" pref="262" max="-2" attributes="0"/>
                                   <Group type="102" alignment="1" attributes="0">
-                                      <Component id="botaoDeletarId" max="32767" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="botaoDeletarId" min="-2" pref="147" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                                       <Component id="ButtonVoltarJFCadastroFunc" min="-2" pref="130" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -157,17 +154,19 @@
                               <Component id="quebracaixatext" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="7" max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="ButtonSalvarCadastroFunc" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="botaoAtualizar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="botaoDeletarId" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
-                  <Component id="ButtonVoltarJFCadastroFunc" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="ButtonSalvarCadastroFunc" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="botaoAtualizar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="ButtonVoltarJFCadastroFunc" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="botaoDeletarId" alignment="0" min="-2" pref="23" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-              <Component id="jScrollPane2" pref="214" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+              <Component id="jScrollPane2" pref="215" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
