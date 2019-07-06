@@ -1,0 +1,5 @@
+# arquivo de criacao do banco #
+
+create database padaria;
+
+user padaria;
