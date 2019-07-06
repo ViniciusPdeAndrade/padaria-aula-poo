@@ -3,70 +3,70 @@ package model;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Pessoa implements Serializable{
+public class Pessoa implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-	
-	private Integer id;
-	private String nome;
-	private String sexo;
-	private LocalDate nascimento;
-	private String cpf;
-	private Double salario;
-	private String funcaoFuncionario;
-	
-	public Pessoa() {}
+    private static final long serialVersionUID = 1L;
 
-	public Integer getId() {
-		return id;
-	}
+    private Integer id;
+    private String nome;
+    private String sexo;
+    private LocalDate nascimento;
+    private String cpf;
+    private Double salario;
+    private String funcaoFuncionario;
+    private Double quebraCaixa;
+    private Double insalubridade;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public Pessoa() {
+    }
 
-	public String getNome() {
-		return nome;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
+    public String getNome() {
+        return nome;
+    }
 
-	public String getCpf() {
-		return cpf;
-	}
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
+    public String getCpf() {
+        return cpf;
+    }
 
-	public Double getSalario() {
-		return salario;
-	}
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
 
-	public void setSalario(Double salario) {
-		this.salario = salario;
-	}
+    public Double getSalario() {
+        return salario;
+    }
 
-	public String getSexo() {
-		return sexo;
-	}
+    public void setSalario(Double salario) {
+        this.salario = salario;
+    }
 
-	public void setSexo(String sexo) {
-		this.sexo = sexo;
-	}
+    public String getSexo() {
+        return sexo;
+    }
 
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
 
+    public String getFuncaoFuncionario() {
+        return funcaoFuncionario;
+    }
 
-	public String getFuncaoFuncionario() {
-		return funcaoFuncionario;
-	}
-
-	public void setFuncaoFuncionario(String funcaoFuncionario) {
-		this.funcaoFuncionario = funcaoFuncionario;
-	}
+    public void setFuncaoFuncionario(String funcaoFuncionario) {
+        this.funcaoFuncionario = funcaoFuncionario;
+    }
 
     public LocalDate getNascimento() {
         return nascimento;
@@ -76,13 +76,24 @@ public class Pessoa implements Serializable{
         this.nascimento = nascimento;
     }
 
-    public void getCpf(String string) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Double getQuebraCaixa() {
+        return quebraCaixa;
     }
-    public void setsetInsalubridade(Double valueOf) {
-		
-	}
-        
-    public void setQuebraCaixa(Double valueOf) {
-	}
+
+    public void setQuebraCaixa(Double quebraCaixa) {
+        this.quebraCaixa = quebraCaixa;
+    }
+
+    public Double getInsalubridade() {
+        return insalubridade;
+    }
+
+    public void setInsalubridade(Double insalubridade) {
+        this.insalubridade = insalubridade;
+    }
+
+    @Override
+    public String toString() {
+        return "Funcionario nome: " + nome + ", funcaoFuncionario: " + funcaoFuncionario;
+    }
 }

@@ -4,7 +4,7 @@ public class FuncionarioPadaria extends Pessoa {
 
 	private static final long serialVersionUID = 1L;
 	
-	protected Double insalubridade;
+	private Double insalubridade;
 	
 	public FuncionarioPadaria() {}
 

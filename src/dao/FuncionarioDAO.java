@@ -25,15 +25,15 @@ public class FuncionarioDAO {
 		try {
 
 			stmt = con.prepareStatement(
-					"INSERT INTO FUNCIONARIO(NOME,SEXO,DATA_NASCIMENTO,CPF,SALARIO,FUNCAO,QUEBRA_CAIXA,INSALUBRIDADE) values (?,?,?,?,?,?,null,null)");
+					"INSERT INTO FUNCIONARIO(NOME,SEXO,DATA_NASCIMENTO,CPF,SALARIO,FUNCAO,QUEBRA_CAIXA,INSALUBRIDADE) values (?,?,?,?,?,?,?,?)");
 			stmt.setString(1, pessoa.getNome());
 			stmt.setString(2, String.valueOf(pessoa.getSexo()));
 			stmt.setDate(3,new java.sql.Date(date.getTime()));
 			stmt.setString(4, pessoa.getCpf());
 			stmt.setDouble(5, pessoa.getSalario());
 			stmt.setString(6, pessoa.getFuncaoFuncionario());
-			//stmt.setDouble(7,  pessoa.getQuebraCaixa());
-			//stmt.setDouble(8,  pessoa.getInsalubridade();
+			stmt.setDouble(7,  pessoa.getQuebraCaixa());
+			stmt.setDouble(8, pessoa.getInsalubridade());
 		
 			stmt.executeUpdate();
 
@@ -43,8 +43,6 @@ public class FuncionarioDAO {
 		} catch (SQLException ex) {
 			JOptionPane.showMessageDialog(null, "Erro ao salvar" + ex);
 			System.out.println("Erro ao salvar" + ex);
-		} finally {
-			DB.closeConnection();
 		}
 	}
         
@@ -62,8 +60,7 @@ public class FuncionarioDAO {
                     
                     Pessoa pessoa = new Pessoa();
                     pessoa.setNome(rs.getString("nome"));
-                    pessoa.getCpf(rs.getString("cpf"));
-                      
+                    pessoa.setFuncaoFuncionario(rs.getString("funcao"));
                     listPessoa.add(pessoa);
                 }           
                 

@@ -34,7 +34,7 @@ public class Program {
 		p.setCpf("01988915040");
 		p.setSalario(1500.00);
 		fcaixa.setFuncaoFuncionario("caixa");
-		fcaixa.setQuebraCaixa(100.00);
+	//	fcaixa.setQuebraCaixa(100.00);
 		fpadaria.setInsalubridade();
 	//	funcDAO.insertFuncPadaria(fpadaria);
 	   /// funcDAO.insertFuncPadaria(fcaixa);

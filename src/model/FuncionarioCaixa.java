@@ -1,6 +1,5 @@
 package model;
 
-import java.util.Date;
 
 public class FuncionarioCaixa extends Pessoa {
 
@@ -13,10 +12,6 @@ public class FuncionarioCaixa extends Pessoa {
 
 	public Double getQuebraCaixa() {
 		return quebraCaixa;
-	}
-
-	public void setQuebraCaixa(Double quebraCaixa) {
-		this.quebraCaixa = quebraCaixa;
 	}
 
 }

@@ -6,12 +6,9 @@
 package JFrames;
 
 import dao.FuncionarioDAO;
-import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.Month;
-import model.FuncionarioCaixa;
+import java.util.ArrayList;
+import java.util.List;
 
 import model.Pessoa;
 
@@ -21,21 +18,41 @@ import model.Pessoa;
  */
 public class JFCadastroFuncionario extends javax.swing.JFrame {
 
+    //Pessoa funcionario = new Pessoa();
     Pessoa funcionario = new Pessoa();
-    
     FuncionarioDAO funciDAO = new FuncionarioDAO();
+    List<Pessoa> listFuncionario;
+
     /**
      * Creates new form JFCadastroFuncionario
      */
     public JFCadastroFuncionario() {
         initComponents();
+        listFuncionario = new ArrayList<>();
+        listarFuncionarios();
     }
-       public LocalDate conversorDate(String date){
-       String dataString = date;
-       String[] daSeparada = dataString.split("/");
-       LocalDate localDate = LocalDate.of(Integer.parseInt(daSeparada[2]), Integer.parseInt(daSeparada[1]), Integer.parseInt(daSeparada[0]));
-           return localDate; 
-   }
+
+    public LocalDate conversorDate(String date) {
+        String dataString = date;
+        String[] daSeparada = dataString.split("/");
+        LocalDate localDate = LocalDate.of(Integer.parseInt(daSeparada[2]), Integer.parseInt(daSeparada[1]), Integer.parseInt(daSeparada[0]));
+        return localDate;
+    }
+
+    public void limparCampos() {
+        TextNomeFunc.setText("");
+        TextSalarioFunc.setText("");
+        funcaoFuncionario.setText("");
+        insalubridadetext.setText("");
+        quebracaixatext.setText("");
+        textCpf.setText("");
+        textoNascimento.setText("");
+    }
+      private void listarFuncionarios(){
+        listFuncionario = funciDAO.listarFuncionarios();
+        listaJframeFunc.setListData(listFuncionario.toArray());    
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -65,6 +82,8 @@ public class JFCadastroFuncionario extends javax.swing.JFrame {
         textoNascimento = new javax.swing.JFormattedTextField();
         jLabel9 = new javax.swing.JLabel();
         textCpf = new javax.swing.JFormattedTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listaJframeFunc = new javax.swing.JList();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -153,6 +172,8 @@ public class JFCadastroFuncionario extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
+        jScrollPane1.setViewportView(listaJframeFunc);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -164,9 +185,6 @@ public class JFCadastroFuncionario extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(ButtonSalvarCadastroFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -185,13 +203,11 @@ public class JFCadastroFuncionario extends javax.swing.JFrame {
                                 .addGap(90, 90, 90)
                                 .addComponent(textCpf))))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(ButtonVoltarJFCadastroFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel6)
-                                .addComponent(jLabel8)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel8))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,7 +217,13 @@ public class JFCadastroFuncionario extends javax.swing.JFrame {
                                 .addGap(25, 25, 25))
                             .addComponent(ComboBoxSexoFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 117, Short.MAX_VALUE)
-                        .addComponent(insalubridadetext, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(insalubridadetext, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 512, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ButtonSalvarCadastroFunc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ButtonVoltarJFCadastroFunc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(72, 72, 72))
         );
         layout.setVerticalGroup(
@@ -235,11 +257,16 @@ public class JFCadastroFuncionario extends javax.swing.JFrame {
                     .addComponent(jLabel9)
                     .addComponent(funcaoFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(ButtonSalvarCadastroFunc)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 143, Short.MAX_VALUE)
-                .addComponent(ButtonVoltarJFCadastroFunc)
-                .addGap(33, 33, 33))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(ButtonSalvarCadastroFunc)
+                        .addGap(40, 40, 40)
+                        .addComponent(ButtonVoltarJFCadastroFunc))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
 
         pack();
@@ -250,13 +277,13 @@ public class JFCadastroFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_ComboBoxSexoFuncActionPerformed
 
     private void ButtonVoltarJFCadastroFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonVoltarJFCadastroFuncActionPerformed
-       JFSegundaTela JFSegundaT = new JFSegundaTela();
-       JFSegundaT.setVisible(true);
-       dispose();
-        
+        JFSegundaTela JFSegundaT = new JFSegundaTela();
+        JFSegundaT.setVisible(true);
+        dispose();
+
         /*/*  JFSegundaTela JFIniciar = new JFSegundaTela();
-        JFIniciar.setVisible(true);
-        dispose();*/ 
+         JFIniciar.setVisible(true);
+         dispose();*/
     }//GEN-LAST:event_ButtonVoltarJFCadastroFuncActionPerformed
 
     private void ButtonSalvarCadastroFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSalvarCadastroFuncActionPerformed
@@ -265,12 +292,14 @@ public class JFCadastroFuncionario extends javax.swing.JFrame {
         funcionario.setCpf(textCpf.getText());
         LocalDate data = conversorDate(textoNascimento.getText());
         funcionario.setNascimento(data);
-        funcionario.setSexo(String.valueOf(ComboBoxSexoFunc.getSelectedItem()));       
+        funcionario.setSexo(String.valueOf(ComboBoxSexoFunc.getSelectedItem()));
         funcionario.setSalario(Double.valueOf(TextSalarioFunc.getText()));
         funcionario.setFuncaoFuncionario(funcaoFuncionario.getText());
-      //  funcionario.setsetInsalubridade( Double.valueOf(insalubridadetext.getText()));
-     //   funcionario.setQuebraCaixa(Double.valueOf(quebracaixatext.getText()));
+        funcionario.setInsalubridade(Double.valueOf(insalubridadetext.getText()));
+        funcionario.setQuebraCaixa(Double.valueOf(quebracaixatext.getText()));
         funciDAO.insertFuncionario(funcionario);
+        limparCampos();
+        listarFuncionarios();
     }//GEN-LAST:event_ButtonSalvarCadastroFuncActionPerformed
 
     private void TextSalarioFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextSalarioFuncActionPerformed
@@ -284,7 +313,6 @@ public class JFCadastroFuncionario extends javax.swing.JFrame {
     private void funcaoFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_funcaoFuncionarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_funcaoFuncionarioActionPerformed
-
 
     /**
      * @param args the command line arguments
@@ -338,6 +366,8 @@ public class JFCadastroFuncionario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList listaJframeFunc;
     private javax.swing.JTextField quebracaixatext;
     private javax.swing.JFormattedTextField textCpf;
     private javax.swing.JFormattedTextField textoNascimento;
