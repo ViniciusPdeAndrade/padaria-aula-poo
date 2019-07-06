@@ -37,7 +37,7 @@ public class Program {
 		fcaixa.setQuebraCaixa(100.00);
 		fpadaria.setInsalubridade();
 	//	funcDAO.insertFuncPadaria(fpadaria);
-	    funcDAO.insertFuncPadaria(fcaixa);
+	   /// funcDAO.insertFuncPadaria(fcaixa);
 		
 	    
 	}

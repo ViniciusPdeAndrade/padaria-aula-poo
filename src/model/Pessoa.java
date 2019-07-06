@@ -64,8 +64,6 @@ public class Pessoa implements Serializable{
 		return funcaoFuncionario;
 	}
 
-
-
 	public void setFuncaoFuncionario(String funcaoFuncionario) {
 		this.funcaoFuncionario = funcaoFuncionario;
 	}
@@ -78,5 +76,13 @@ public class Pessoa implements Serializable{
         this.nascimento = nascimento;
     }
 
-
+    public void getCpf(String string) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    public void setsetInsalubridade(Double valueOf) {
+		
+	}
+        
+    public void setQuebraCaixa(Double valueOf) {
+	}
 }

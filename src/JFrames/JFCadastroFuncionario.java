@@ -11,6 +11,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Month;
+import model.FuncionarioCaixa;
 
 import model.Pessoa;
 
@@ -267,8 +268,8 @@ public class JFCadastroFuncionario extends javax.swing.JFrame {
         funcionario.setSexo(String.valueOf(ComboBoxSexoFunc.getSelectedItem()));       
         funcionario.setSalario(Double.valueOf(TextSalarioFunc.getText()));
         funcionario.setFuncaoFuncionario(funcaoFuncionario.getText());
-        funcionario.setsetInsalubridade(Double.valueOf(insalubridadetext.getText()));
-        funcionario.setQuebraCaixa(Double.valueOf(quebracaixatext.getText()));
+      //  funcionario.setsetInsalubridade( Double.valueOf(insalubridadetext.getText()));
+     //   funcionario.setQuebraCaixa(Double.valueOf(quebracaixatext.getText()));
         funciDAO.insertFuncionario(funcionario);
     }//GEN-LAST:event_ButtonSalvarCadastroFuncActionPerformed
 

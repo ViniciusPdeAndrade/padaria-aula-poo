@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import db.DB;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import model.FuncionarioCaixa;
 import model.FuncionarioPadaria;
@@ -13,7 +16,7 @@ import model.Pessoa;
 public class FuncionarioDAO {
 
 	
-	public void insertFuncPadaria(Pessoa pessoa) {
+	public void insertFuncionario(Pessoa pessoa) {
              
             java.util.Date date = java.sql.Date.valueOf(pessoa.getNascimento());
 	
@@ -29,8 +32,8 @@ public class FuncionarioDAO {
 			stmt.setString(4, pessoa.getCpf());
 			stmt.setDouble(5, pessoa.getSalario());
 			stmt.setString(6, pessoa.getFuncaoFuncionario());
-			//stmt.setDouble(7, (((FuncionarioCaixa) pessoa).getQuebraCaixa()));
-			//stmt.setDouble(8, ((FuncionarioPadaria) pessoa).getInsalubridade());
+			//stmt.setDouble(7,  pessoa.getQuebraCaixa());
+			//stmt.setDouble(8,  pessoa.getInsalubridade();
 		
 			stmt.executeUpdate();
 
@@ -44,4 +47,31 @@ public class FuncionarioDAO {
 			DB.closeConnection();
 		}
 	}
+        
+        public List<Pessoa> listarFuncionarios(){
+            
+       Connection con = DB.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        List<Pessoa> listPessoa = new ArrayList<>();
+         try {
+                stmt = con.prepareStatement("SELECT * FROM funcionario");
+                rs = stmt.executeQuery();
+                while(rs.next()){
+                    
+                    Pessoa pessoa = new Pessoa();
+                    pessoa.setNome(rs.getString("nome"));
+                    pessoa.getCpf(rs.getString("cpf"));
+                      
+                    listPessoa.add(pessoa);
+                }           
+                
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Erro ao Listar os produtos" + ex);
+                
+            }
+        
+        return listPessoa;
+        }
 }
