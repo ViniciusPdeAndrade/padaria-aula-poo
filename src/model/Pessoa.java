@@ -14,8 +14,6 @@ public class Pessoa implements Serializable {
     private String cpf;
     private Double salario;
     private String funcaoFuncionario;
-    private Double quebraCaixa;
-    private Double insalubridade;
 
     public Pessoa() {
     }
@@ -74,22 +72,6 @@ public class Pessoa implements Serializable {
 
     public void setNascimento(LocalDate nascimento) {
         this.nascimento = nascimento;
-    }
-
-    public Double getQuebraCaixa() {
-        return quebraCaixa;
-    }
-
-    public void setQuebraCaixa(Double quebraCaixa) {
-        this.quebraCaixa = quebraCaixa;
-    }
-
-    public Double getInsalubridade() {
-        return insalubridade;
-    }
-
-    public void setInsalubridade(Double insalubridade) {
-        this.insalubridade = insalubridade;
     }
 
     @Override

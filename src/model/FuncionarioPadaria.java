@@ -7,6 +7,7 @@ public class FuncionarioPadaria extends Pessoa {
     private Double insalubridade;
 
     public FuncionarioPadaria() {
+        super();
     }
     
     public Double getInsalubridade() {

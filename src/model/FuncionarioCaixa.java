@@ -7,6 +7,9 @@ public class FuncionarioCaixa extends Pessoa {
     private Double quebraCaixa;
 
     public FuncionarioCaixa() {
+        super();
+        getQuebraCaixa();
+ 
     }
 
     public Double getQuebraCaixa() {
