@@ -16,7 +16,6 @@ import javax.swing.JOptionPane;
 
 import db.DB;
 import model.Produto;
-import model.Produto;
 
 /**
  *

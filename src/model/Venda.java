@@ -12,7 +12,7 @@ public class Venda implements Serializable {
 	private FuncionarioCaixa funcCaixa;
 	private Produto produto;
 	
-	private Venda() {}
+	public Venda() {}
 
 	public Integer getId() {
 		return id;
