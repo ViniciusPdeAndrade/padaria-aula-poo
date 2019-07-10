@@ -11,7 +11,7 @@ public class Fornecedor implements Serializable{
 	private String cnpj;
 	private String endereco;
 	
-	private Fornecedor() {}
+	public Fornecedor() {}
 
 	public Integer getId() {
 		return id;

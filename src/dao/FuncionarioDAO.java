@@ -60,7 +60,6 @@ public class FuncionarioDAO {
             stmt.setDouble(5, pessoa.getSalario());
             stmt.setString(6, pessoa.getFuncaoFuncionario());
             stmt.setDouble(7, pessoa.getQuebraCaixa());
-            //stmt.setDouble(8, Double.parseDouble(null));
             stmt.executeUpdate();
 
             JOptionPane.showMessageDialog(null, "Salvo com sucesso");

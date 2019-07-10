@@ -11,9 +11,8 @@ public class Produto implements Serializable {
 	private Double valor;
 	private Integer quantidade;
 	private Fornecedor fornecedor;
-	private TipoProduto tipoProduto;
 
-	private Produto() {}
+	public Produto() {}
 
 	public Integer getId() {
 		return id;
@@ -55,11 +54,4 @@ public class Produto implements Serializable {
 		this.fornecedor = fornecedor;
 	}
 
-	public TipoProduto getTipoProduto() {
-		return tipoProduto;
-	}
-
-	public void setTipoProduto(TipoProduto tipoProduto) {
-		this.tipoProduto = tipoProduto;
-	}
 }

@@ -5,17 +5,48 @@
  */
 package JFrames;
 
+import dao.FornecedorDAO;
+import java.util.ArrayList;
+import java.util.List;
+import model.Fornecedor;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author curso
  */
 public class JFCadastrarFornecedor extends javax.swing.JFrame {
 
+    Fornecedor fornecedor = new Fornecedor();
+    FornecedorDAO fDAO = new FornecedorDAO();
+    List<Fornecedor> listaFornecedor;
+
     /**
      * Creates new form JFCadastrarFornecedor
      */
     public JFCadastrarFornecedor() {
         initComponents();
+        listaFornecedor = new ArrayList<>();
+        listarFornecedores();
+    }
+
+    public void limparCampos() {
+        TextNomeFornecedor.setText("");
+        TextCNPJFornecedor.setText("");
+        TextEnderecoFornecedor.setText("");
+    }
+
+    private void listarFornecedores() {
+        DefaultTableModel model = (DefaultTableModel) tabelaFornecedor.getModel();
+        model.setNumRows(0);
+        fDAO.listarForcedor().stream().forEach((f) -> {
+            model.addRow(new Object[]{
+                f.getId(),
+                f.getNome(),
+                f.getCnpj(),
+                f.getEndereco()
+            });
+        });
     }
 
     /**
@@ -37,7 +68,7 @@ public class JFCadastrarFornecedor extends javax.swing.JFrame {
         ButtonSalvarCadastroForncedor = new javax.swing.JButton();
         ButtonVoltarJFCdastroFornecedor = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelaFornecedor = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -68,6 +99,11 @@ public class JFCadastrarFornecedor extends javax.swing.JFrame {
 
         ButtonSalvarCadastroForncedor.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         ButtonSalvarCadastroForncedor.setText("Salvar");
+        ButtonSalvarCadastroForncedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonSalvarCadastroForncedorActionPerformed(evt);
+            }
+        });
 
         ButtonVoltarJFCdastroFornecedor.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         ButtonVoltarJFCdastroFornecedor.setText("Voltar");
@@ -77,7 +113,7 @@ public class JFCadastrarFornecedor extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaFornecedor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -85,13 +121,33 @@ public class JFCadastrarFornecedor extends javax.swing.JFrame {
                 "ID:", "Nome Fantasia:", "CNPJ", "Endereço"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        tabelaFornecedor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaFornecedorMouseClicked(evt);
+            }
+        });
+        tabelaFornecedor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tabelaFornecedorKeyReleased(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tabelaFornecedor);
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton1.setText("Atualizar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton2.setText("Deletar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -165,11 +221,69 @@ public class JFCadastrarFornecedor extends javax.swing.JFrame {
 
     private void ButtonVoltarJFCdastroFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonVoltarJFCdastroFornecedorActionPerformed
         // TODO add your handling code here:
+        JFSegundaTela JFSegundaT = new JFSegundaTela();
+        JFSegundaT.setVisible(true);
+        dispose();
+
     }//GEN-LAST:event_ButtonVoltarJFCdastroFornecedorActionPerformed
 
     private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
         // TODO add your handling code here:
     }//GEN-LAST:event_formComponentResized
+
+    private void ButtonSalvarCadastroForncedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSalvarCadastroForncedorActionPerformed
+        // TODO add your handling code here:
+        fornecedor.setNome(TextNomeFornecedor.getText());
+        fornecedor.setCnpj(TextCNPJFornecedor.getText());
+        fornecedor.setEndereco(TextEnderecoFornecedor.getText());
+        fDAO.insertFornecedor(fornecedor);
+        listarFornecedores();
+        limparCampos();
+    }//GEN-LAST:event_ButtonSalvarCadastroForncedorActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        if (tabelaFornecedor.getSelectedRow() != -1) {
+
+            fornecedor.setId((Integer) tabelaFornecedor.getValueAt(tabelaFornecedor.getSelectedRow(), 0));
+            fDAO.deletefornecedor(fornecedor);
+            limparCampos();
+            listarFornecedores();
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        if (tabelaFornecedor.getSelectedRow() != -1) {
+            fornecedor.setNome(TextNomeFornecedor.getText());
+            fornecedor.setCnpj(TextCNPJFornecedor.getText());
+            fornecedor.setEndereco(TextEnderecoFornecedor.getText());
+            fornecedor.setId((Integer) tabelaFornecedor.getValueAt(tabelaFornecedor.getSelectedRow(), 0));
+            fDAO.updateFornecedor(fornecedor);
+            listarFornecedores();
+            limparCampos();
+
+        }
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void tabelaFornecedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaFornecedorMouseClicked
+        // TODO add your handling code here:
+        if (tabelaFornecedor.getSelectedRow() != -1) {
+            TextNomeFornecedor.setText(tabelaFornecedor.getValueAt(tabelaFornecedor.getSelectedRow(), 1).toString());
+            TextCNPJFornecedor.setText(tabelaFornecedor.getValueAt(tabelaFornecedor.getSelectedRow(), 2).toString());
+            TextEnderecoFornecedor.setText(tabelaFornecedor.getValueAt(tabelaFornecedor.getSelectedRow(), 3).toString());
+        }
+    }//GEN-LAST:event_tabelaFornecedorMouseClicked
+
+    private void tabelaFornecedorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tabelaFornecedorKeyReleased
+        // TODO add your handling code here:
+        if (tabelaFornecedor.getSelectedRow() != -1) {
+            TextNomeFornecedor.setText(tabelaFornecedor.getValueAt(tabelaFornecedor.getSelectedRow(), 1).toString());
+            TextCNPJFornecedor.setText(tabelaFornecedor.getValueAt(tabelaFornecedor.getSelectedRow(), 2).toString());
+            TextEnderecoFornecedor.setText(tabelaFornecedor.getValueAt(tabelaFornecedor.getSelectedRow(), 3).toString());
+        }
+    }//GEN-LAST:event_tabelaFornecedorKeyReleased
 
     /**
      * @param args the command line arguments
@@ -219,6 +333,6 @@ public class JFCadastrarFornecedor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tabelaFornecedor;
     // End of variables declaration//GEN-END:variables
 }
